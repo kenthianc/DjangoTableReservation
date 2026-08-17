@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Table Reservation System{% endblock %}</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+        header { background-color: #35495e; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; font-size: 24px; }
+        nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .nav-sidebar { float: left; width: 200px; background: #eef1f5; padding: 15px; border-radius: 4px; }
+        .nav-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .nav-sidebar li { margin-bottom: 10px; }
+        .nav-sidebar a { text-decoration: none; color: #35495e; font-weight: bold; }
+        .nav-sidebar a:hover { color: #007bff; }
+        .content { margin-left: 240px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #35495e; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .btn { display: inline-block; padding: 8px 12px; margin: 5px 0; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; }
+        .btn-primary { background: #007bff; color: white; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #0056b3; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #bd2130; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .errorlist { color: #dc3545; list-style: none; padding-left: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Table Reservation System</h1>
+        <nav>
+            <a href="/admin/">Django Admin</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="nav-sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="{% url 'reservation_app:customer_list' %}">Customers</a></li>
+                <li><a href="{% url 'reservation_app:table_category_list' %}">Table Categories</a></li>
+                <li><a href="{% url 'reservation_app:table_list' %}">Tables</a></li>
+                <li><a href="{% url 'reservation_app:reservation_status_list' %}">Reservation Statuses</a></li>
+                <li><a href="{% url 'reservation_app:reservation_list' %}">Reservations</a></li>
+                <li><a href="{% url 'reservation_app:payment_list' %}">Payments</a></li>
+                <li><a href="{% url 'reservation_app:audit_log_list' %}">Audit Logs</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</body>
+</html>

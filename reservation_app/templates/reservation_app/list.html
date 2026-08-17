@@ -1,0 +1,49 @@
+{% extends 'reservation_app/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    
+    {% if add_url %}
+        <a href="{{ add_url }}" class="btn btn-primary">Add New</a>
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    {% for val in item.values %}
+                        <td>{{ val }}</td>
+                    {% endfor %}
+                    <td>
+                        {% if item.detail_url %}
+                            <a href="{{ item.detail_url }}">View</a> | 
+                        {% endif %}
+                        {% if item.edit_url %}
+                            <a href="{{ item.edit_url }}">Edit</a>
+                        {% endif %}
+                        {% if item.delete_url %}
+                            | <a href="{{ item.delete_url }}">Delete</a>
+                        {% endif %}
+                        {% if item.cancel_url %}
+                            | <a href="{{ item.cancel_url }}">Cancel</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="{{ headers|length|add:1 }}">No records found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

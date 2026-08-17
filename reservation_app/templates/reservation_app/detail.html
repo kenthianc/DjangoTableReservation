@@ -1,0 +1,26 @@
+{% extends 'reservation_app/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    
+    <div style="margin-top: 20px;">
+        {% for label, val in fields.items %}
+            <p><strong>{{ label }}:</strong> {{ val }}</p>
+        {% endfor %}
+    </div>
+
+    <div style="margin-top: 30px;">
+        {% if edit_url %}
+            <a href="{{ edit_url }}" class="btn btn-primary">Edit</a>
+        {% endif %}
+        {% if delete_url %}
+            <a href="{{ delete_url }}" class="btn btn-danger">Delete</a>
+        {% endif %}
+        {% if cancel_url %}
+            <a href="{{ cancel_url }}" class="btn btn-secondary">Cancel Reservation</a>
+        {% endif %}
+        <a href="{{ list_url }}" class="btn btn-secondary">Back to List</a>
+    </div>
+{% endblock %}
